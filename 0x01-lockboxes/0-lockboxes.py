@@ -6,7 +6,7 @@ def canUnlockAll(boxes):
     """ Determines if all the boxes can be opened suppose
     each boxes, numbered sequentially from 0 to n-1, contain
     keys to other boxes.
-    """.
+    """
     unlocked_boxes = set([0])  # boxes[0] is the initially given key
     keys = set(boxes[0]).difference(unlocked_boxes)
 
