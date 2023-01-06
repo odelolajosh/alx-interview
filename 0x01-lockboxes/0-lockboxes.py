@@ -12,7 +12,7 @@ def canUnlockAll(boxes):
 
     while len(keys) > 0:
         box_id = keys.pop()
-        if not box_id or 0 > box_id >= len(boxes):
+        if not box_id or box_id < 0 or box_id >= len(boxes):
             continue
         if box_id not in unlocked_boxes:
             keys = keys.union(boxes[box_id])
