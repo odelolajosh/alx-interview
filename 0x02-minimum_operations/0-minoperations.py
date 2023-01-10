@@ -21,11 +21,10 @@ def minOperations(n):
 
     while hs < n:
         if (n - hs) % hs == 0:
+            clipboard = hs      # copy
+            hs += clipboard     # paste
             operations += 2
-            clipboard = hs
         else:
+            hs += clipboard     # paste
             operations += 1
-
-        hs += clipboard
-
     return operations
