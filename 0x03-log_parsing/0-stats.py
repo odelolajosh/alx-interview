@@ -13,11 +13,12 @@ def print_stats(total_size, status_codes):
         print(f"{status}: {count}")
 
 
-total_size = 0
-status_codes = dict()
-count = 0
-
 if __name__ == "__main__":
+    total_size = 0
+    status_codes = dict()
+    count = 0
+    statuses = ("200", "301", "400", "401", "403", "404", "405", "500")
+
     try:
         for line in sys.stdin:
             count += 1
@@ -33,7 +34,7 @@ if __name__ == "__main__":
                 status = fields[1]
                 if status in statuses:
                     status_codes[status] = status_codes.get(status, 0) + 1
-            except:
+            except Exception:
                 pass
     except KeyboardInterrupt as err:
         print_stats(total_size, status_codes)
