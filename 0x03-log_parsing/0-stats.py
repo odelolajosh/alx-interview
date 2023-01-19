@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """ 0. Log parsing """
 import sys
-
-
-statuses = ("200", "301", "400", "401", "403", "404", "405", "500")
+import re
+from collections import defaultdict
 
 
 def print_stats(total_size, status_codes):
@@ -13,29 +12,33 @@ def print_stats(total_size, status_codes):
         print(f"{status}: {count}")
 
 
+exp = r"^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}\s-\s\[.*\]\s\".*\"\s(\d{3})\s(\d+)\n$"
+
+
 if __name__ == "__main__":
     total_size = 0
-    status_codes = dict()
+    status_codes = defaultdict(lambda: 0)
     count = 0
     statuses = ("200", "301", "400", "401", "403", "404", "405", "500")
 
     try:
         for line in sys.stdin:
             count += 1
-            try:
-                fields = line.split()[::-1]     # reverse split log
 
-                if count == 10:
-                    print_stats(total_size, status_codes)
-                    count = 0
-                    continue
+            print(line, end='')
+            match = re.fullmatch(exp, line)   # match standard log expression
+            if not match:
+                continue
 
-                total_size += int(fields[0])
-                status = fields[1]
-                if status in statuses:
-                    status_codes[status] = status_codes.get(status, 0) + 1
-            except Exception:
-                pass
+            code, file_size = match.groups()
+
+            total_size += int(file_size)
+            if code in statuses:
+                status_codes[code] += 1
+
+            if count == 10:
+                print_stats(total_size, status_codes)
+                count = 0
     except KeyboardInterrupt as err:
         print_stats(total_size, status_codes)
         raise err
