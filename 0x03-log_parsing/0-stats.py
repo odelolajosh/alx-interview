@@ -16,20 +16,21 @@ status_obj = {code: 0 for code in codes}
 acc_size = 0
 
 try:
-    count = 0
+    counter = 0
     for line in sys.stdin:
-        count += 1
-        fields = line.split()[::-1]    # reverse split
+        fields = line.split()[::-1]
         try:
             acc_size += int(fields[0])
             code = fields[1]
 
-            if code in codes:
+            if code in status_obj:
                 status_obj[code] += 1
 
-            if count == 10:
+            counter += 1
+
+            if counter == 10:
                 print_stats(acc_size, status_obj)
-                count = 0
+                counter = 0
         except Exception:
             pass
 except KeyboardInterrupt:
