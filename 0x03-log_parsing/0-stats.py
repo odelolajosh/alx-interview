@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            fields = line.split()[::-1]
+            fields = line.split()[::-1] # reverse split log
 
             if count == 10:
                 print_stats(total_size, status_codes)
