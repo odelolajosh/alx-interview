@@ -13,24 +13,23 @@ def print_stats(total_size, status_codes):
         print(f"{status}: {count}")
 
 
-if __name__ == "__main__":
-    total_size = 0
-    status_codes = dict()
-    count = 0
+total_size = 0
+status_codes = dict()
+count = 0
 
-    try:
-        for line in sys.stdin:
-            fields = line.split()[::-1]     # reverse split log
+try:
+    for line in sys.stdin:
+        fields = line.split()[::-1]     # reverse split log
 
-            if count == 10:
-                print_stats(total_size, status_codes)
-                count = 0
-                continue
+        if count == 10:
+            print_stats(total_size, status_codes)
+            count = 0
+            continue
 
-            total_size += int(fields[0])
-            status = fields[1]
-            if status in statuses:
-                status_codes[status] = status_codes.get(status, 0) + 1
-            count += 1
-    finally:
-        print_stats(total_size, status_codes)
+        total_size += int(fields[0])
+        status = fields[1]
+        if status in statuses:
+            status_codes[status] = status_codes.get(status, 0) + 1
+        count += 1
+finally:
+    print_stats(total_size, status_codes)
