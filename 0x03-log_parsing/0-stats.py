@@ -31,5 +31,6 @@ try:
         if status in statuses:
             status_codes[status] = status_codes.get(status, 0) + 1
         count += 1
-finally:
+except KeyboardInterrupt:
     print_stats(total_size, status_codes)
+    raise
