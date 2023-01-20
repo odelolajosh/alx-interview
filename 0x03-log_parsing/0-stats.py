@@ -7,9 +7,9 @@ from collections import defaultdict
 
 def print_stats(total_size, status_codes):
     """ Prints a log stats. """
-    print(f"File size: {total_size}")
+    print("File size: {}".format(total_size)
     for status, count in sorted(status_codes.items()):
-        print(f"{status}: {count}")
+        print(f"{}: {}".format(status, count)
 
 
 exp = r"^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}\s-\s\[.*\]\s\".*\"\s(\d{3})\s(\d+)\n$"
