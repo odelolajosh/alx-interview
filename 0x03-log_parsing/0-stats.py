@@ -33,6 +33,5 @@ try:
                 counter = 0
         except Exception:
             pass
-except KeyboardInterrupt:
+finally:
     print_stats(acc_size, status_obj)
-    raise
