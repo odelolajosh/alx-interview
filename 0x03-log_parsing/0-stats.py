@@ -9,7 +9,7 @@ def print_stats(total_size, status_codes):
     """ Prints a log stats. """
     print("File size: {}".format(total_size)
     for status, count in sorted(status_codes.items()):
-        print(f"{}: {}".format(status, count)
+        print("{}: {}".format(status, count)
 
 
 exp = r"^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}\s-\s\[.*\]\s\".*\"\s(\d{3})\s(\d+)\n$"
