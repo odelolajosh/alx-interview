@@ -37,6 +37,5 @@ if __name__ == "__main__":
             if count == 10:
                 print_stats(total_size, status_codes)
                 count = 0
-    except KeyboardInterrupt as err:
+    finally:
         print_stats(total_size, status_codes)
-        raise err
