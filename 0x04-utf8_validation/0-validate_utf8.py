@@ -16,8 +16,8 @@ def validUTF8(data):
                 count = 3
             elif x >> 7 != 0:
                 return False
+        elif x >> 6 != 0b10:
+            return False
         else:
-            if x >> 6 != 0b10:
-                return False
             count -= 1
     return count == 0
