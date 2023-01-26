@@ -8,15 +8,15 @@ def validUTF8(data):
     count = 0
     for x in data:
         if count == 0:
-            if x >> 5 == 0b110:
+            if x >> 5 == 0b110:         # two byte character
                 count = 1
-            elif x >> 4 == 0b1110:
+            elif x >> 4 == 0b1110:      # three byte character
                 count = 2
-            elif x >> 3 == 0b11110:
+            elif x >> 3 == 0b11110:     # four byte character
                 count = 3
-            elif x >> 7 != 0:
+            elif x >> 7 != 0:           # Invalid byte
                 return False
-        elif x >> 6 != 0b10:
+        elif x >> 6 != 0b10:            # check for continuation byte
             return False
         else:
             count -= 1
