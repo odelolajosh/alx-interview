@@ -3,14 +3,14 @@
 import sys
 
 
-def queens(n, i, a, b, c):
+def queens(n, i=0, a=[], b=[], c=[]):
     """
     Args:
         n (int): size of the board
         i (int): row
         a (list): columns
-        b (list): diagonals
-        c (list): diagonals
+        b (list): diagonal
+        c (list): other diagonal
     Yields:
         list: solution in the form of a list of lists
     """
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         if N < 4:
             raise ValueError("N must be at least 4")
 
-        for solution in queens(N, 0, [], [], []):
+        for solution in queens(N):
             print(solution)
     except Exception as err:
         if hasattr(err, "message"):
