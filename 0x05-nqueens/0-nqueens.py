@@ -12,11 +12,12 @@ def queens(n, i=0, a=[], b=[], c=[]):
         b (list): diagonal
         c (list): other diagonal
     Yields:
-        list: solution in the form of a list of lists
+        list: solution in the form of a list of lists of coordinates
     """
     if i < n:
         for j in range(n):
             if j not in a and i+j not in b and i-j not in c:
+                # if a solution in this branch is promising, yield it
                 yield from queens(n, i+1, a+[j], b+[i+j], c+[i-j])
     else:
         yield [[i, j] for i, j in enumerate(a)]
