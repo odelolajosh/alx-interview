@@ -7,14 +7,23 @@ request(url, function (error, response, body) {
     console.log(error);
   } else {
     const characters = JSON.parse(body).characters;
-    for (const character of characters) {
-      request(character, function (error, response, body) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(JSON.parse(body).name);
-        }
+    const characterPromises = characters.map((character) => {
+      return new Promise((resolve, reject) => {
+        request(character, function (error, response, body) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(JSON.parse(body).name);
+          }
+        });
       });
-    }
+    });
+    Promise.all(characterPromises).then((names) => {
+      names.forEach((name) => {
+        console.log(name);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 });
