@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" 0. Change comes from within """
 
 def makeChange(coins, total):
     """Return a list of coins to make the total.
@@ -14,7 +15,7 @@ def makeChange(coins, total):
     change = 0
     index = 0
     # sort coins in descending order
-    coins.sort(reverse=True);
+    coins.sort(reverse=True)
     while total > 0:
         if index >= len(coins):
             return -1
