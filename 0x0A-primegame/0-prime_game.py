@@ -30,22 +30,21 @@ def isWinner(x, nums):
         return None
     if not all([type(num) is int for num in nums]):
         return None
-    if not all([num > 0 for num in nums]):
-        return None
 
     scores = [0, 0]
     players = ["Maria", "Ben"]
 
-    for num in nums:
+    for num in nums[:x]:
         primes = primeNumbers(num)
-        currentPlayer = 0                   # current player is Maria
+        turn = 0                   # current player is Maria
 
         for prime in primes:
-            currentPlayer = (currentPlayer + 1) % 2
+            turn = (turn + 1) % 2
 
-        winner = (currentPlayer + 1) % 2    # winner is the other player
+        winner = (turn + 1) % 2    # winner is the other player
         scores[winner] += 1
 
+    print(scores)
     if scores[0] == scores[1]:
         return None
     return players[scores.index(max(scores))]
