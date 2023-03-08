@@ -33,8 +33,8 @@ def isWinner(x, nums):
     if not all([num > 0 for num in nums]):
         return None
 
-    scores = (0, 0)
-    players = ("Maria", "Ben")
+    scores = [0, 0]
+    players = ["Maria", "Ben"]
 
     for num in nums:
         primes = primeNumbers(num)
