@@ -41,10 +41,10 @@ def primeNumbers(n):
 
 def isWinner(x, nums):
     """ Returns the name of the player that won the most rounds """
-    if type(x) is not int or x < 1 or type(nums) is not list:
-        return None
-    if not all([type(num) is int for num in nums]):
-        return None
+    # if type(x) is not int or x < 1 or type(nums) is not list:
+    #     return None
+    # if not all([type(num) is int for num in nums]):
+    #     return None
 
     scores = [0, 0]                 # Maria, Ben
 
