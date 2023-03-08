@@ -6,7 +6,7 @@ def primeNumbers(n):
     """ Returns a list of prime numbers up to n """
     if n < 2:
         return []
-    
+
     root = 1
     primes = [2]
 
@@ -37,16 +37,13 @@ def isWinner(x, nums):
 
     for num in nums[:x]:
         primes = primeNumbers(num)
-        # print(f"primes = {primes}")
         turn = 0                    # current player is Maria
 
         for prime in primes:
-            # print(f"{['Maria', 'Ben'][turn % 2]} removed {prime} from {list(range(1, num + 1))}")
             turn += 1
 
         winner = (turn + 1) % 2     # winner is the other player
         scores[winner] += 1
-        # print(f"for list {list(range(1, num + 1))}, winner is {['Maria', 'Ben'][winner]}")
 
     if scores[0] == scores[1]:
         return None
