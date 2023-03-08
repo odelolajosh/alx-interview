@@ -37,11 +37,8 @@ def isWinner(x, nums):
 
     for num in nums[:x]:
         primes = primeNumbers(num)
-        turn = 0                    # current player is Maria
-
-        for prime in primes:
-            turn += 1
-
+        # the players makes optimal moves, so all the primes are removed
+        turn = len(primes) % 2      # current player with no moves
         winner = (turn + 1) % 2     # winner is the other player
         scores[winner] += 1
 
