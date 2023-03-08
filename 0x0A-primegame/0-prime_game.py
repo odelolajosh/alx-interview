@@ -2,6 +2,19 @@
 """ 0x0A. Prime Game """
 
 
+def memoize(f):
+    """ Memoization decorator """
+    cache = {}
+
+    def wrapper(*args):
+        """ Memoized function """
+        if args not in cache:
+            cache[args] = f(*args)
+        return cache[args]
+    return wrapper
+
+
+@memoize
 def primeNumbers(n):
     """ Returns a list of prime numbers up to n """
     if n < 2:
