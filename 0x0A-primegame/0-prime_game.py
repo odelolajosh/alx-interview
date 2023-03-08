@@ -54,3 +54,11 @@ if __name__ == "__main__":
     x = 3
     nums = [4, 5, 1]
     print(f"x = {x}, nums = {nums} -> {isWinner(x, nums)}")
+
+    x = 5
+    nums = [2, 5, 1, 4, 3]
+    print(f"x = {x}, nums = {nums} -> {isWinner(x, nums)}")
+
+    x = 1
+    nums = [5]
+    print(f"x = {x}, nums = {nums} -> {isWinner(x, nums)}")
