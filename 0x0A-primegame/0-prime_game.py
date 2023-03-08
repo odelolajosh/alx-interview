@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """ 0x0A. Prime Game """
 
+
 def primeNumbers(n):
     """ Returns a list of prime numbers up to n """
+    if n < 2:
+        return []
+    
     root = 1
-    primes = []
+    primes = [2]
 
     for number in range(2, n + 1):
         isPrime = True
@@ -24,27 +28,32 @@ def primeNumbers(n):
 
 def isWinner(x, nums):
     """ Returns the name of the player that won the most rounds """
-    if type(x) is not int or x < 1:
-        return None
-    if type(nums) is not list:
+    if type(x) is not int or x < 1 or type(nums) is not list:
         return None
     if not all([type(num) is int for num in nums]):
         return None
 
-    scores = [0, 0]
-    players = ["Maria", "Ben"]
+    scores = [0, 0]                 # Maria, Ben
 
     for num in nums[:x]:
         primes = primeNumbers(num)
-        turn = 0                   # current player is Maria
+        # print(f"primes = {primes}")
+        turn = 0                    # current player is Maria
 
         for prime in primes:
-            turn = (turn + 1) % 2
+            # print(f"{['Maria', 'Ben'][turn % 2]} removed {prime} from {list(range(1, num + 1))}")
+            turn += 1
 
-        winner = (turn + 1) % 2    # winner is the other player
+        winner = (turn + 1) % 2     # winner is the other player
         scores[winner] += 1
+        # print(f"for list {list(range(1, num + 1))}, winner is {['Maria', 'Ben'][winner]}")
 
-    print(scores)
     if scores[0] == scores[1]:
         return None
-    return players[scores.index(max(scores))]
+    return "Maria" if scores[0] > scores[1] else "Ben"
+
+
+if __name__ == "__main__":
+    x = 3
+    nums = [4, 5, 1]
+    print(f"x = {x}, nums = {nums} -> {isWinner(x, nums)}")
