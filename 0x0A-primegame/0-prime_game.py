@@ -41,18 +41,23 @@ def primeNumbers(n):
 
 def isWinner(x, nums):
     """ Returns the name of the player that won the most rounds """
-    # if type(x) is not int or x < 1 or type(nums) is not list:
-    #     return None
-    # if not all([type(num) is int for num in nums]):
-    #     return None
+    if type(x) is not int or x < 1 or type(nums) is not list:
+        return None
+    if not all([type(num) is int for num in nums]):
+        return None
 
     scores = [0, 0]                 # Maria, Ben
+    all_primes = primeNumbers(max(nums))
 
     for num in nums[:x]:
-        primes = primeNumbers(num)
+        # get the primes up to the current number
+        turns = 0
+        for prime in all_primes:
+            if prime > num:
+                break
+            turns += 1
         # the players makes optimal moves, so all the primes are removed
-        turn = len(primes) % 2      # current player with no moves
-        winner = (turn + 1) % 2     # winner is the other player
+        winner = (turns + 1) % 2     # winner is the other player
         scores[winner] += 1
 
     if scores[0] == scores[1]:
